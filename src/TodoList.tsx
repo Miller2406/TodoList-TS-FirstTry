@@ -39,6 +39,7 @@ export const TodoList = () => {
   const handleDelete = (id: number) => {
     const arr = todos.filter((d) => d.id != id);
     setTodos(arr);
+    console.log(todos);
   };
 
   const [textarea, setTextarea] = useState<item[]>([
@@ -63,8 +64,14 @@ export const TodoList = () => {
 
   const setEdittextarea = () => {
     setIsEditing(!isEditing);
-    handleDelete(textarea[0].id);
-    replaceTodo();
+    const newTodo = [...todos];
+    const toEditTodo: item | undefined = newTodo.find(
+      (t) => t.id === textarea[0].id
+    );
+    if (toEditTodo) {
+      toEditTodo.text = textarea[0].text;
+      setTodos(newTodo);
+    }
   };
 
   const replaceTodo = () => {
@@ -72,14 +79,9 @@ export const TodoList = () => {
     console.log(todos);
   };
 
-  const deleteTest = async () => {
-    console.log(todos);
-  };
-
   return (
     <div className="main-page">
       <div className={isEditing ? "none" : "main-container"}>
-        <button onClick={deleteTest}></button>
         <h1>Todo List</h1>
         <ul>
           {todos.map((todo) => (
