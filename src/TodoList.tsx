@@ -74,11 +74,6 @@ export const TodoList = () => {
     }
   };
 
-  const replaceTodo = () => {
-    setTodos([...todos]);
-    console.log(todos);
-  };
-
   return (
     <div className="main-page">
       <div className={isEditing ? "none" : "main-container"}>
