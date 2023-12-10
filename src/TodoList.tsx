@@ -62,15 +62,15 @@ export const TodoList = () => {
     setIsEditing(false);
   };
 
-  const setEdittextarea = () => {
+  const setEditTextarea = () => {
     setIsEditing(!isEditing);
-    const newTodo = [...todos];
-    const toEditTodo: item | undefined = newTodo.find(
+    const newTodos = [...todos];
+    const toEditTodo: item | undefined = newTodos.find(
       (t) => t.id === textarea[0].id
     );
     if (toEditTodo) {
       toEditTodo.text = textarea[0].text;
-      setTodos(newTodo);
+      setTodos(newTodos);
     }
   };
 
@@ -133,7 +133,7 @@ export const TodoList = () => {
           }
         })}
         <div>
-          <button onClick={() => setEdittextarea()}>Done</button>
+          <button onClick={() => setEditTextarea()}>Done</button>
           <button onClick={() => handleCancelEdit()}>Cancel</button>
         </div>
       </div>
